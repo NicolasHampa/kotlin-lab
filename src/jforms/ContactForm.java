@@ -1,5 +1,7 @@
 package jforms;
 
+import kt.business.ContactBusinessKt;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +36,11 @@ public class ContactForm extends JFrame {
         buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                String name = textFieldName.getText();
+                String phone = textFieldPhone.getText();
+                String email = textFieldEmail.getText();
 
+                ContactBusinessKt.save(name, phone, email);
             }
         });
 

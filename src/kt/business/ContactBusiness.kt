@@ -1,9 +1,14 @@
-package kt
+package kt.business
 
+import kt.entity.Contact
+import kt.repository.ContactRepository
 import java.lang.Exception
 
 fun save(name: String, phone: String, email: String) {
     validateSave(name, phone)
+
+    val contact = Contact(name, phone, email)
+    ContactRepository.save(contact)
 }
 
 fun delete(name: String) {
