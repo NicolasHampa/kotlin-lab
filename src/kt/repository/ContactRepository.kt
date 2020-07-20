@@ -14,5 +14,9 @@ class ContactRepository {
         fun delete(name: String) {
 
         }
+
+        fun get(): List<Contact> {
+            return contactList
+        }
     }
 }

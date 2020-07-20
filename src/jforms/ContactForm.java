@@ -1,6 +1,6 @@
 package jforms;
 
-import kt.business.ContactBusinessKt;
+import kt.business.ContactBusiness;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +20,8 @@ public class ContactForm extends JFrame {
     private JLabel labelPhone;
     private JLabel labelEmail;
 
+    private ContactBusiness contactBusiness;
+
     public ContactForm() {
         setContentPane(panelBase);
         setSize(500, 300);
@@ -27,6 +29,8 @@ public class ContactForm extends JFrame {
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
+
+        contactBusiness = new ContactBusiness();
 
         setListeners();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -40,7 +44,7 @@ public class ContactForm extends JFrame {
                 String phone = textFieldPhone.getText();
                 String email = textFieldEmail.getText();
 
-                ContactBusinessKt.save(name, phone, email);
+                contactBusiness.save(name, phone, email);
             }
         });
 
