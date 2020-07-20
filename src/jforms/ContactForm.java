@@ -50,7 +50,6 @@ public class ContactForm extends JFrame {
                     contactBusiness.save(name, phone, email);
 
                     mainForm.getContacts();
-                    mainForm.labelContacts.setText(contactBusiness.getContactsCount());
 
                     dispose();
                 } catch (Exception exception) {

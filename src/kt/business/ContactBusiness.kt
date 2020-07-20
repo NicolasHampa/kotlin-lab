@@ -13,8 +13,11 @@ class ContactBusiness {
         ContactRepository.save(contact)
     }
 
-    fun delete(name: String) {
+    fun delete(name: String, phone: String, email: String) {
         validateDelete(name)
+
+        val contact = Contact(name, phone, email)
+        ContactRepository.delete(contact);
     }
 
     fun validateSave(name: String, phone: String) {
