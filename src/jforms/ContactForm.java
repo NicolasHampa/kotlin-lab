@@ -20,9 +20,10 @@ public class ContactForm extends JFrame {
     private JLabel labelPhone;
     private JLabel labelEmail;
 
+    private MainForm mainForm;
     private ContactBusiness contactBusiness;
 
-    public ContactForm() {
+    public ContactForm(MainForm mainForm) {
         setContentPane(panelBase);
         setSize(500, 300);
         setVisible(true);
@@ -30,6 +31,7 @@ public class ContactForm extends JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 
+        this.mainForm = mainForm;
         contactBusiness = new ContactBusiness();
 
         setListeners();
@@ -40,11 +42,20 @@ public class ContactForm extends JFrame {
         buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String name = textFieldName.getText();
-                String phone = textFieldPhone.getText();
-                String email = textFieldEmail.getText();
+                try {
+                    String name = textFieldName.getText();
+                    String phone = textFieldPhone.getText();
+                    String email = textFieldEmail.getText();
 
-                contactBusiness.save(name, phone, email);
+                    contactBusiness.save(name, phone, email);
+
+                    mainForm.getContacts();
+                    mainForm.labelContacts.setText(contactBusiness.getContactsCount());
+
+                    dispose();
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(new JFrame(), exception.getMessage());
+                }
             }
         });
 

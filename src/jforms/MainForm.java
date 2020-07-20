@@ -16,7 +16,7 @@ public class MainForm extends JFrame {
     private JButton buttonNewContact;
     private JButton buttonRemoveContact;
     private JTable tableContacts;
-    private JLabel labelContacts;
+    protected JLabel labelContacts;
 
     private ContactBusiness contactBusiness;
 
@@ -39,10 +39,12 @@ public class MainForm extends JFrame {
     }
 
     private void setListeners() {
+        MainForm mainForm = MainForm.this;
+
         buttonNewContact.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                new ContactForm();
+                new ContactForm(mainForm);
             }
         });
 
@@ -54,7 +56,7 @@ public class MainForm extends JFrame {
         });
     }
 
-    private void getContacts() {
+    protected void getContacts() {
         List<Contact> listContacts = contactBusiness.get();
 
         String[] columnNames = { "Name", "Phone", "E-mail" };
